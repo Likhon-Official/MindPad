@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+
+body {
+  @apply bg-black text-white antialiased overflow-hidden;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+.safe-top {
+  padding-top: var(--safe-top);
+}
+
+.safe-bottom {
+  padding-bottom: max(var(--safe-bottom), 1.5rem);
+}
+
+/* Material Design Ripple Effect */
+.ripple {
+  @apply relative overflow-hidden;
+}
+
+.ripple::after {
+  content: '';
+  @apply absolute block rounded-full scale-0 opacity-50 bg-white/30;
+  padding: 50%;
+  transition: transform 0.5s ease-out;
+}
+
+.ripple:active::after {
+  transform: scale(2);
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Native-like scrolling */
+.native-scroll {
+  @apply overflow-y-auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.native-scroll::-webkit-scrollbar {
+  display: none;
+}
